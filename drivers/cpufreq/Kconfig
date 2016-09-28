@@ -326,18 +326,6 @@ config CPU_FREQ_GOV_DARKUTIL
 	  If in doubt, say N.
 
 
-config CPU_WAKE_BOOST
-	bool "CPU wake boost"
-	depends on FB
-	help
-	  This governor makes decisions based on the utilization data provided
-	  by the scheduler.  It sets the CPU frequency to be proportional to
-	  the utilization/capacity ratio coming from the scheduler. The
-	  frequency tipping point is at utilization/capacity equal to 80%
-	  by default.
-
-	  If in doubt, say N.
-
 comment "CPU frequency scaling drivers"
 
 config CPUFREQ_DT

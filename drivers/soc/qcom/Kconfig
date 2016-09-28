@@ -955,10 +955,16 @@ config WCD_DSP_GLINK
 	   between MSM and WCD DSP over glink transport protocol. This driver
 	   provides read and write interface via char device.
 
+<<<<<<< HEAD
 config SERIAL_NUM
 	bool "Enable Serial Number Proc Interface"
 	help
 	Provide a interface for reading CPU serial number
+=======
+config STATE_NOTIFIER
+        bool "State Notifier"
+	default y
+>>>>>>> c55c82d1fa42... Add State Notifier Driver
 
 source "drivers/soc/qcom/memshare/Kconfig"
 
