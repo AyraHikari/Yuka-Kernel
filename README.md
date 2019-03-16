@@ -1,4 +1,4 @@
-[![Build Status](https://semaphoreci.com/api/v1/ayrahikari/yuka-kernel/branches/lineage-16-0/badge.svg)](https://semaphoreci.com/ayrahikari/yuka-kernel)
+[![Build Status](https://semaphoreci.com/api/v1/ayrahikari/yuka-kernel/branches/lineage-16-0/shields_badge.svg)](https://semaphoreci.com/ayrahikari/yuka-kernel)
 
         Linux kernel release 3.x <http://kernel.org/>
 
