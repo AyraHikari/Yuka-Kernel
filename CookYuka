@@ -1,0 +1,26 @@
+# Variables
+export tanggal=$(date +"%d%m%y")
+python3 -c "v=open('version', 'w'); v.write('{}'.format(open('arch/arm64/configs/yuka_defconfig', 'r').read().split('\n')[0].split('-')[-1][:-1])[:-1]); v.close()"
+export versi=$(cat version)
+export device=land
+export targetgrup=-1001351974027
+git clone https://github.com/najahiiii/aarch64-linux-gnu.git -b gcc4.9.4-20190301 gcc
+git clone https://github.com/NusantaraDevs/DragonTC-8.0.git dtc
+export CLANG_TCHAIN=${PWD}/dtc/bin/clang
+export KBUILD_COMPILER_STRING=$(${PWD}/dtc/bin/clang --version | head -n 1 | perl -pe 's/\(.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//' -e 's/DragonTC/Yuka/g')
+export ARCH=arm64
+export CC=${PWD}/dtc/bin/clang
+export CLANG_TRIPLE=aarch64-linux-gnu-
+export CROSS_COMPILE=${PWD}/gcc/bin/aarch64-linux-gnu-
+export KBUILD_BUILD_USER=AyraHikari
+export KBUILD_BUILD_HOST=NusantaraDevs
+# Cooking
+mkdir -p out
+make -C ${PWD} O=out yuka_defconfig;
+make O=out -j$(nproc --all);
+# Finishing
+git clone https://gitlab.com/AyraHikari/my-anykernel ${PWD}/Yuka-Kernel
+cp ${PWD}/out/arch/arm64/boot/Image.gz ${PWD}/Yuka-Kernel/yuka
+cd ${PWD}/Yuka-Kernel
+zip -r Yuka-Kernel-$versi-$tanggal-$device.zip *
+curl -s -F chat_id=$targetgrup -F document=@"Yuka-Kernel-$versi-$tanggal-$device.zip" -F caption="Yuka Kernel $versi for $device by [Ayra Hikari](tg://user?id=388576209)" -F parse_mode="markdown" https://api.telegram.org/bot$token/sendDocument
