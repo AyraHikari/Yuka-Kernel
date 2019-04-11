@@ -4,20 +4,27 @@ python3 -c "v=open('version', 'w'); v.write('{}'.format(open('arch/arm64/configs
 export versi=$(cat version)
 export device=land
 export targetgrup=-1001351974027
-git clone https://github.com/najahiiii/aarch64-linux-gnu.git -b gcc4.9.4-20190301 gcc
+# git clone https://github.com/najahiiii/aarch64-linux-gnu.git -b gcc4.9.4-20190301 gcc
+# git clone https://github.com/AyraHikari/aarch64-linux-gnu.git gcc
+git clone https://github.com/najahiiii/aarch64-linux-gnu.git -b linaro8-20190402 tool-linaro
 git clone https://github.com/NusantaraDevs/DragonTC-8.0.git dtc
 export CLANG_TCHAIN=${PWD}/dtc/bin/clang
 export KBUILD_COMPILER_STRING=$(${PWD}/dtc/bin/clang --version | head -n 1 | perl -pe 's/\(.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//' -e 's/DragonTC/Yuka/g')
 export ARCH=arm64
 export CC=${PWD}/dtc/bin/clang
 export CLANG_TRIPLE=aarch64-linux-gnu-
-export CROSS_COMPILE=${PWD}/gcc/bin/aarch64-linux-gnu-
+export CROSS_COMPILE=${PWD}/tool-linaro/bin/aarch64-linux-gnu-
 export KBUILD_BUILD_USER=AyraHikari
 export KBUILD_BUILD_HOST=NusantaraDevs
 # Cooking
 mkdir -p out
 make -C ${PWD} O=out yuka_defconfig;
 make O=out -j$(nproc --all);
+if [ $? -eq 0 ]; then
+	echo Compressing...
+else
+	curl -s -X POST https://api.telegram.org/bot$token/sendMessage?chat_id=$targetgrup -d "parse_mode=markdown&text=*Build Gagal!*" > /dev/null && exit
+fi
 # Finishing
 git clone https://gitlab.com/AyraHikari/my-anykernel ${PWD}/Yuka-Kernel
 cp ${PWD}/out/arch/arm64/boot/Image.gz ${PWD}/Yuka-Kernel/yuka
