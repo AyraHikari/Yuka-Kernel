@@ -735,9 +735,7 @@ static struct clk_freq_tbl ftbl_gcc_oxili_gfx3d_clk[] = {
 	F_SLEW( 240000000, FIXED_CLK_SRC, gpll6_aux,	4.5,	0,	0),
 	F_SLEW( 266670000, FIXED_CLK_SRC, gpll0,	3,	0,	0),
 	F_SLEW( 400000000, FIXED_CLK_SRC, gpll0,	2,	0,	0),
-	F_SLEW( 465000000, 930000000,	  gpll3,	1,	0,	0),
 	F_SLEW( 500000000, 1000000000,	  gpll3,	1,	0,	0),
-	F_SLEW( 550000000, 1100000000,	  gpll3,	1,	0,	0),
 	F_END
 };
 
@@ -4254,8 +4252,8 @@ static void override_for_8937(int speed_bin)
 	} else {
 		OVERRIDE_FMAX5(gfx3d,
 			LOWER, 216000000, LOW, 300000000,
-			NOMINAL, 375000000, NOM_PLUS, 450000000,
-			HIGH, 600000000);
+			NOMINAL, 375000000, NOM_PLUS, 400000000,
+			HIGH, 500000000);
 		OVERRIDE_FTABLE(gfx3d, ftbl_gcc_oxili_gfx3d_clk, 8937);
 	}
 
