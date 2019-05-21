@@ -103,3 +103,7 @@ android/configs/android-*.cfg
 
 # out
 out
+
+# Compiler
+cook
+cache
