@@ -13,7 +13,7 @@ toolchain=none
 
 if [ "$buildtype" == "dtc" ]; then
 	toolchain=~/DTC
-	gcc_path=~/GCC_COMPILER/bin/aarch64-linux-android-
+	export gcc_path=~/GCC_COMPILER/bin/aarch64-linux-android-
 	rm -rf ~/GCC_COMPILER > /dev/null
 	git clone git clone https://github.com/najahiiii/aarch64-linux-gnu.git -b 4.9-mirror --depth=1 ~/GCC_COMPILER
 	rm -rf $toolchain > /dev/null
@@ -22,7 +22,7 @@ if [ "$buildtype" == "dtc" ]; then
 	export tail="dtc"
 elif [ "$buildtype" == "clang" ]; then
 	toolchain=~/CLANG
-	gcc_path=~/GCC_COMPILER/bin/aarch64-linux-android-
+	export gcc_path=~/GCC_COMPILER/bin/aarch64-linux-android-
 	rm -rf ~/GCC_COMPILER > /dev/null
 	git clone https://github.com/najahiiii/aarch64-linux-gnu.git -b 4.9-mirror --depth=1 ~/GCC_COMPILER
 	rm -rf $toolchain > /dev/null
@@ -34,7 +34,7 @@ elif [ "$buildtype" == "clang" ]; then
 	export tail="clang"
 elif [ "$buildtype" == "gcc" ]; then
 	toolchain=none
-	gcc_path=~/GCC_COMPILER/bin/aarch64-elf-
+	export gcc_path=~/GCC_COMPILER/bin/aarch64-elf-
 	rm -rf ~/GCC_COMPILER > /dev/null
 	git clone https://github.com/najahiiii/priv-toolchains -b elf/gcc-9.2.0/arm64 --depth=1 ~/GCC_COMPILER
 	export build_tags="#Ayra #GCC"
