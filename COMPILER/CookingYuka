@@ -13,30 +13,31 @@ toolchain=none
 
 if [ "$buildtype" == "dtc" ]; then
 	toolchain=~/DTC
-	gcc_path=~/GCC_COMPILER/bin/aarch64-elf-
+	gcc_path=~/GCC_COMPILER/bin/aarch64-linux-android-
 	rm -rf ~/GCC_COMPILER > /dev/null
-	git clone https://github.com/najahiiii/priv-toolchains.git --depth=1 -b arm64 ~/GCC_COMPILER
+	git clone git clone https://github.com/najahiiii/aarch64-linux-gnu.git -b 4.9-mirror --depth=1 ~/GCC_COMPILER
 	rm -rf $toolchain > /dev/null
 	git clone https://github.com/NusantaraDevs/DragonTC.git --depth=1 $toolchain
-	export build_tags="#Yuka #DragonTC #DTC"
+	export build_tags="#Ayra #DragonTC #DTC"
 	export tail="dtc"
 elif [ "$buildtype" == "clang" ]; then
 	toolchain=~/CLANG
+	gcc_path=~/GCC_COMPILER/bin/aarch64-linux-android-
 	rm -rf ~/GCC_COMPILER > /dev/null
-	git clone https://github.com/najahiiii/priv-toolchains.git --depth=1 -b arm64 ~/GCC_COMPILER
+	git clone https://github.com/najahiiii/aarch64-linux-gnu.git -b 4.9-mirror --depth=1 ~/GCC_COMPILER
 	rm -rf $toolchain > /dev/null
 	wget -q https://kdrag0n.dev/files/redirector/proton_clang-latest.tar.zst
 	tar -I zstd -xf proton_clang-latest.tar.zst
 	rm proton_clang-latest.tar.zst
 	mv proton_clang-* $toolchain
-	export build_tags="#Yuka #Proton #Clang"
+	export build_tags="#Ayra #Proton #Clang"
 	export tail="clang"
 elif [ "$buildtype" == "gcc" ]; then
 	toolchain=none
 	gcc_path=~/GCC_COMPILER/bin/aarch64-elf-
 	rm -rf ~/GCC_COMPILER > /dev/null
 	git clone https://github.com/najahiiii/priv-toolchains -b elf/gcc-9.2.0/arm64 --depth=1 ~/GCC_COMPILER
-	export build_tags="#Yuka #GCC"
+	export build_tags="#Ayra #GCC"
 	export tail="gcc"
 fi
 
