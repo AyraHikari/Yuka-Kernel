@@ -104,6 +104,6 @@ android/configs/android-*.cfg
 # out
 out
 
-# Compiler
+# Script and cache
 cook
 cache
