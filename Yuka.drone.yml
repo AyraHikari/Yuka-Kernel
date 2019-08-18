@@ -18,9 +18,9 @@ steps:
         from_secret: targetgrup
       device: land
       kerneldir: kernel
-      defconfig: land_defconfig
-      kernelname: Ayra Kernel
-      versi: v3.18.140
+      defconfig: yuka_defconfig
+      kernelname: Yuka Kernel
+      versi: v1.2.0
       unified: true
 
     commands:
@@ -38,9 +38,9 @@ steps:
         from_secret: targetgrup
       device: land
       kerneldir: kernel
-      defconfig: land_defconfig
-      kernelname: Ayra Kernel
-      versi: v3.18.140
+      defconfig: yuka_defconfig
+      kernelname: Yuka Kernel
+      versi: v1.2.0
       unified: true
       buildtype: dtc
 
@@ -59,9 +59,9 @@ steps:
         from_secret: targetgrup
       device: land
       kerneldir: kernel
-      defconfig: land_defconfig
-      kernelname: Ayra Kernel
-      versi: v3.18.140
+      defconfig: yuka_defconfig
+      kernelname: Yuka Kernel
+      versi: v1.2.0
       unified: true
       buildtype: clang
 
